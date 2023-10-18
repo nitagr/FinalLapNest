@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body } from '@nestjs/common';
 import { SqldbService } from './sqldb.service';
 import { StoredProcedureDto } from './dto/storedproc-sqldb.dto';
 
-@Controller('sqldb')
+@Controller('db')
 export class SqldbController {
   constructor(private readonly sqldbService: SqldbService) {}
 
@@ -11,9 +11,8 @@ export class SqldbController {
     return this.sqldbService.findAll();
   }
 
-  @Post('/sp')
+  @Post('/listsp')
   findAllStored(@Body() requestBody: StoredProcedureDto): Promise<any> {
-    console.log('req', requestBody);
     return this.sqldbService.findAllStored(requestBody);
   }
 }
