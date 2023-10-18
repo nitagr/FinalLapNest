@@ -10,7 +10,8 @@ import { AppService } from './app.service';
 import { SqldbModule } from './sqldb/sqldb.module';
 import { SqlModule } from './shared/sql/sql.module';
 import { APP_PIPE, RouterModule } from '@nestjs/core';
-import { AuthMiddleware } from './common/middlewares/auth.middleware';
+import { AuthMiddleware } from './Libs/middlewares/auth.middleware';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -21,14 +22,19 @@ import { AuthMiddleware } from './common/middlewares/auth.middleware';
     SqlModule,
     RouterModule.register([
       {
-        path: 'api/v2',
+        path: 'api/v2/',
         module: SqldbModule,
+      },
+      {
+        path: 'api/v2',
+        module: CommonModule,
       },
       // {
       //   path: 'api/v2/athena',
       //   module: SqldbModule,
       // },
     ]),
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [
