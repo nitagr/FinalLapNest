@@ -9,9 +9,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SqldbModule } from './sqldb/sqldb.module';
 import { SqlModule } from './shared/sql/sql.module';
-import { APP_PIPE, RouterModule } from '@nestjs/core';
+import { APP_FILTER, APP_PIPE, RouterModule } from '@nestjs/core';
 import { AuthMiddleware } from './Libs/middlewares/auth.middleware';
 import { CommonModule } from './common/common.module';
+import { HttpExceptionFilter } from './Libs/filters/http-exception.filter';
 
 @Module({
   imports: [
@@ -42,6 +43,10 @@ import { CommonModule } from './common/common.module';
     {
       provide: APP_PIPE,
       useClass: ValidationPipe,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
     },
   ],
 })

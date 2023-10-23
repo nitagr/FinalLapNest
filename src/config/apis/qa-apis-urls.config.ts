@@ -1,4 +1,4 @@
-export const config = {
+export const CONFIG = {
   AGENT_CTC_BASE_URL:
     'https://hrmsqa.policybazaar.com/HRMS-Emp/api/EmpExt/GetAgentCTCDetails',
   CTC_INCENTIVE_URL:

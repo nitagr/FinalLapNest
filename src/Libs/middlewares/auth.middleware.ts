@@ -5,6 +5,7 @@ import { Request, Response, NextFunction } from 'express';
 export class AuthMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     console.log('middleware');
+    req['user'] = { userId: 90680 };
     next();
   }
 }
