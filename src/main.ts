@@ -4,9 +4,11 @@ import { ConfigService } from '@nestjs/config';
 import { HttpService } from '@nestjs/axios';
 import { InternalServerErrorException } from '@nestjs/common';
 import { HttpExceptionFilter } from './Libs/filters/http-exception.filter';
+import { SecretService } from './config/services/aws-secret.service';
 
 async function bootstrap() {
   const httpService = new HttpService();
+
   const app = await NestFactory.create(AppModule);
 
   app.useGlobalFilters(new HttpExceptionFilter());
@@ -25,5 +27,9 @@ async function bootstrap() {
   await app.listen(port, () => {
     console.log('App started on Port', port);
   });
+
+  // const secretService = new SecretService(configService);
+  // const data = await secretService.getAwsSecretConfig();
+  // console.log(data);
 }
 bootstrap();

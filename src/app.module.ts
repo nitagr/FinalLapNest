@@ -13,6 +13,7 @@ import { APP_FILTER, APP_PIPE, RouterModule } from '@nestjs/core';
 import { AuthMiddleware } from './Libs/middlewares/auth.middleware';
 import { CommonModule } from './common/common.module';
 import { HttpExceptionFilter } from './Libs/filters/http-exception.filter';
+import { SecretService } from './config/services/aws-secret.service';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { HttpExceptionFilter } from './Libs/filters/http-exception.filter';
   controllers: [AppController],
   providers: [
     AppService,
+    SecretService,
     {
       provide: APP_PIPE,
       useClass: ValidationPipe,
