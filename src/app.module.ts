@@ -14,6 +14,7 @@ import { AuthMiddleware } from './Libs/middlewares/auth.middleware';
 import { CommonModule } from './common/common.module';
 import { HttpExceptionFilter } from './Libs/filters/http-exception.filter';
 import { SecretService } from './config/services/aws-secret.service';
+import { MongoModule } from './shared/mongo/mongo.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { SecretService } from './config/services/aws-secret.service';
       // },
     ]),
     CommonModule,
+    MongoModule,
   ],
   controllers: [AppController],
   providers: [
